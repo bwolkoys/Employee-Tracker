@@ -8,7 +8,7 @@ VALUES
     ('Operations'),
     ('Servicing'),
     ('Retail'),
-    ('Correspondence')
+    ('Correspondence');
 
 -- roles --
 INSERT INTO roles (title, department_id, salary)
@@ -19,7 +19,7 @@ VALUES
     ('Chief Ops Officer', 4, 195000),
     ('VP of Servicing', 5, 175000),
     ('VP of Retail', 6, 150000),
-    ('Correspondent AE', 7, 200000),
+    ('Correspondent AE', 7, 200000);
 
 --employees--
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
@@ -30,4 +30,4 @@ VALUES
     ('Nicole', 'McCarthy', 401, 40004),
     ('Riley', 'Burke', 501, 50005),
     ('Courtney', 'Kelly', 601, 60006),
-    ('Mia', 'Rodgers', 701, 70007)
+    ('Mia', 'Rodgers', 701, 70007);

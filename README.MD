@@ -29,3 +29,4 @@
 - inquirer.prompt: https://www.npmjs.com/package/inquirer 
 - switch (answers.action): https://stackoverflow.com/questions/74075310/how-to-properly-nest-inquirer-prompts 
     - https://www.w3schools.com/js/js_switch.asp 
+- 23-Ins_Parameterized-Queries: connection pool

@@ -43,7 +43,7 @@ function mainOptions() {
                     updateEmployeeRole();
                     break;
                 case 'Exit':
-                    console.log("Exiting the application.");
+                    console.log("Exiting application.");
                     process.exit();
             }
         });

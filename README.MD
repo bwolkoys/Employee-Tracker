@@ -25,3 +25,7 @@
 - THEN I am prompted to select an employee to update and their new role and this information is updated in the database
 
 ## RESOURCES
+
+- inquirer.prompt: https://www.npmjs.com/package/inquirer 
+- switch (answers.action): https://stackoverflow.com/questions/74075310/how-to-properly-nest-inquirer-prompts 
+    - https://www.w3schools.com/js/js_switch.asp 

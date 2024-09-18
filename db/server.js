@@ -9,12 +9,12 @@ const pool = new Pool(
       user: 'psql',
       password: 'Brody',
       host: 'localhost',
-      database: 'courses_db'
+      database: 'employee_tracker_db'
   },
   console.log('Connected to the employee_tracker_db database!')
   )
   
   module.exports = db;
-  
+
   pool.connect();
   

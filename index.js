@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const db = require('./db/server');
 
-// Start server after DB connection
+// DB connection- Start server after
 db.connect(err => {
     if (err) throw err;
     console.log('Database connected.');

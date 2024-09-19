@@ -4,7 +4,7 @@ const db = require('./db/server');
 // DB connection- Start server after
 db.connect(err => {
     if (err) throw err;
-    console.log('Database connected.');
+    console.log('Database is connected.');
     employee_tracker();
 });
 

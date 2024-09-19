@@ -1,6 +1,22 @@
+
+const inquirer = require ('inquirer');
+const mysql = require('mysql');
+
+const db = mysql.createConnection ({
+    host: 'localhost',
+    user: 'psql',
+    password: 'Brody',
+    database: 'employee_tracker_db'
+});
+console.log('Connected to the employee_tracker_db database!')
+module.exports = db;
+
+
+
+
 //Taken from activity 23 of Module 12
 
-const { Pool } = require('pg');
+/* const { Pool } = require('pg');
 const express = require ('express'); 
 
 const PORT = process.env.PORT || 3001;
@@ -19,5 +35,5 @@ const pool = new Pool(
   
   // module.exports = db;
 
-  pool.connect();
+  pool.connect(); */
   

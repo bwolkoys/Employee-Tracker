@@ -2,11 +2,23 @@ const inquirer = require('inquirer');
 const db = require('./db/server');
 
 // DB connection- Start server after
+
 db.connect(err => {
+    if (err) {
+        console.error('Connection error', err.stack);
+    } else {
+        console.log('Database is connected.');
+        employee_tracker();
+    }
+});
+
+
+
+/*db.connect(err => {
     if (err) throw err;
     console.log('Database is connected.');
     employee_tracker();
-});
+});*/
 
 let employee_tracker = function() {
     console.log("Welcome to the Employee Tracker");

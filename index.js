@@ -8,7 +8,7 @@ db.connect(err => {
     employee_tracker();
 });
 
-function mainOptions() {
+let employee_tracker = function() {
     console.log("Welcome to the Employee Tracker");
     inquirer
         .prompt ([

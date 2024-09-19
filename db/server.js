@@ -1,3 +1,5 @@
+//Taken from activity 23 of Module 12
+
 const { Pool } = require('pg');
 
 const PORT = process.env.PORT || 3001;

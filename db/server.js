@@ -1,13 +1,14 @@
-
 const inquirer = require ('inquirer');
-const mysql = require('mysql');
+const { Pool } = require('pg');
 
-const db = mysql.createConnection ({
-    host: 'localhost',
-    user: 'psql',
-    password: 'Brody',
-    database: 'employee_tracker_db'
-});
+const db = new Pool (
+    {
+        user: 'postgres',
+        password: 'Brody',
+        host: 'localhost',
+        database: 'employee_tracker_db'
+    }
+);
 console.log('Connected to the employee_tracker_db database!')
 module.exports = db;
 

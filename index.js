@@ -41,40 +41,40 @@ let employee_tracker = function() {
             }
         ])
         .then((answers) => {
-            if (answers.prompt === 'View all departments') {
+            if (answers.action === 'View all departments') {
                 db.query(`SELECT * FROM department`, (err, result) => {
                     if (err) throw err;
                     console.log("All departments: ");
-                    console.table(result);
+                    console.table(result.rows);
                     employee_tracker();
                 });
-            } else if (answers.prompt === 'View all roles') {
+            } else if (answers.action === 'View all roles') {
                 db.query(`SELECT * FROM roles`, (err, result) => {
                     if (err) throw err;
                     console.log("All roles: ");
-                    console.table(result);
+                    console.table(result.rows);
                     employee_tracker();
                 });
-            } else if (answers.promt === 'View all employees:') {
-                db.query(`SELECT * FROM employee`, (err, result) => {
+            } else if (answers.action === 'View all employees') {
+                db.query(`SELECT * FROM employees`, (err, result) => {
                     if (err) throw err;
                     console.log("All employees: ");
-                    console.table(result);
+                    console.table(result.rows);
                     employee_tracker();
                 });
-            } else if (answers.prompt === 'Add A Department') {
+            } else if (answers.action === 'Add a department') {
                 inquirer.prompt ([{
                     type: 'input',
                     name: 'department',
                     message: 'What is the department name?'
                 }]).then((answers) => {
-                db.query(`INSERT INTO department (name) VALUES (?)`, [answers.department], (err, result) => {
+                db.query(`INSERT INTO department (names) VALUES ($1)`, [answers.department], (err, result) => {
                     if (err) throw err;
                     console.log(`Added ${answers.department} to the department database.`)
                     employee_tracker();
                 });
             })
-        } else if (answers.prompt === 'Add A Role') {
+        } else if (answers.action === 'Add a role') {
             db.query(`SELECT * FROM department`, (err, result) => {
                 if (err) throw err;
 
@@ -82,7 +82,7 @@ let employee_tracker = function() {
                     {
                        //name
                        type: 'input',
-                       name: 'department',
+                       name: 'title',
                        message: 'What is the name of the role?'
                     },
                     {
@@ -98,8 +98,11 @@ let employee_tracker = function() {
                         message: 'Pick the department the role fits into:',
                         choices: () => {
                             let array = [];
-                            for (let i = 0; i < result.length; i++) {
-                                array.push(result[i].name);
+                            for (let i = 0; i < result.rows.length; i++) {
+                                array.push({
+                                    name: result.rows[i].names,
+                                    value: result.rows[i].id
+                                });
                             }
                             return array;
                         }
@@ -110,27 +113,28 @@ let employee_tracker = function() {
                             let department = result[i];
                         }
                     }
-                    db.query(`INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`, [answers.role, answers.salary, department.id], (err, result) => {
+                    db.query(`INSERT INTO roles (title, salary, department_id) VALUES ($1, $2, $3)`, [answers.title, answers.salary, answers.department], (err, result) => {
                         if (err) throw err;
                         console.log(`Added ${answers.role} to the database.`)
                         employee_tracker();
                     });
                 })
             })
-        } else if (answers.prompt === 'Add An Employee') {
-            db.query(`SELECT * FROM employee, role`, (err, result) => {
+        } else if (answers.action === 'Add an employee') {
+            db.query(`SELECT * FROM employees, roles`, (err, result) => {
                 if (err) throw err;
+
                 inquirer.prompt([
                     {
                         //first name
                         type: 'input',
-                        name: 'department',
+                        name: 'firstName',
                         message: 'What is the employees first name?'
                      },
                      {
                        //last name
                        type: 'input',
-                       name: 'role',
+                       name: 'lastName',
                        message: 'What is the employees last name?'
                      },
                      {
@@ -154,20 +158,20 @@ let employee_tracker = function() {
                         message: 'Who is the employees manager?'
                      }
                 ])
-            }).then((answers) => {
+            }).then ((answers) => {
                 for (let i = 0; i < result.length; i++) {
-                    if (result[i].title === answers.role) {
-                        let role = result[i];
+                    if (result[i].title === answers.roles) {
+                        let roles = result[i];
                     }
                 }
-                db.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`, [answers.firstName, answers.lastName, role.id, answers.manager.id], (err, result) => {
+                db.query(`INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES ($1, $2, $3, $4)`, [answers.firstName, answers.lastName, role.id, answers.manager.id], (err, result) => {
                     if (err) throw err;
                     console.log(`Added ${answers.firstName} ${answers.lastName} to the database.`)
                     employee_tracker();
                 });
             })
-        } else if (answers.prompt === 'Update An Employee Role') {
-            db.query(`SELECT * FROM employee, role`, (err, result) => {
+        } else if (answers.action === 'Update an employees role') {
+            db.query(`SELECT * FROM employees, roles`, (err, result) => {
                 if (err) throw err;
                 inquirer.prompt ([
                     {
@@ -207,14 +211,14 @@ let employee_tracker = function() {
                             let role = result[i];
                         }
                     }
-                    db.query(`UPDATE employee SET ? WHERE ?`, [{role_id: role}, {last_name: name}], (err, result) => {
+                    db.query(`UPDATE employees SET $1 WHERE $2`, [{role_id: role}, {last_name: name}], (err, result) => {
                         if (err) throw err;
                         console.log(`Updated ${answers.employee} role to the database.`)
                         employee_tracker();
                     });
                 })
             })
-        } else if (answers.prompt === 'exit') {
+        } else if (answers.action === 'exit') {
             db.end();
             console.log("Exit");
         }

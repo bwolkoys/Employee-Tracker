@@ -34,3 +34,8 @@ This is a CLI application to help manage the employee database of a company. It 
     - https://www.w3schools.com/js/js_switch.asp 
 - 23-Ins_Parameterized-Queries: connection pool
 - installing mysql: https://stackoverflow.com/questions/18134411/cannot-find-module-mysql-node-js (realized I don't need this)
+
+## Troubleshooting
+- Work got busy and I didn't have enough time to fix "add an employee", "update an employee", and "exit" when in the CLI. For "add an employee" I'm getting a .then error and for "update an employee" and "exit" nothing is popping up below, not showing any errors in the CLI. 
+
+## Link to Video Demo

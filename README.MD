@@ -39,3 +39,4 @@ This is a CLI application to help manage the employee database of a company. It 
 - Work got busy and I didn't have enough time to fix "add an employee", "update an employee", and "exit" when in the CLI. For "add an employee" I'm getting a .then error and for "update an employee" and "exit" nothing is popping up below, not showing any errors in the CLI. 
 
 ## Link to Video Demo
+- My screencastify isn't working so I screen recorded it on Loom: https://www.loom.com/share/eb36c9b70aa34566865ac8bad7021a54?sid=2eb3e229-e438-4c87-a0be-969c31056d3f 

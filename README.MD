@@ -1,3 +1,6 @@
+## Description 
+This is a CLI application to help manage the employee database of a company. It allows you to view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role. The goal of this application is to help organize and plan a business. 
+
 ## USER STORY
 
 - AS A business owner
@@ -30,4 +33,4 @@
 - switch (answers.action): https://stackoverflow.com/questions/74075310/how-to-properly-nest-inquirer-prompts 
     - https://www.w3schools.com/js/js_switch.asp 
 - 23-Ins_Parameterized-Queries: connection pool
-- installing mysql: https://stackoverflow.com/questions/18134411/cannot-find-module-mysql-node-js 
+- installing mysql: https://stackoverflow.com/questions/18134411/cannot-find-module-mysql-node-js (realized I don't need this)
